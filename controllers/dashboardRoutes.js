@@ -1,16 +1,17 @@
-const router = require('express').Router();
-const { Post, User, Dashboard } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { Post, Comment, User } = require("../models");
+const withAuth = require("../utils/auth");
 
+//show all the post
 router.get("/", withAuth, async (req, res) => {
-
+  console.log("Start Dashboard Route to get all post by users");
   try {
-    // Get all projects and JOIN with user data
+    console.log("getting user post: ", req.session.user_id);
     const PostData = await Post.findAll({
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ["id", "title", "content", "created_at"],
+      attributes: ["id", "title", "description", "created_at"],
       include: [
         {
           model: Comment,
@@ -25,10 +26,11 @@ router.get("/", withAuth, async (req, res) => {
           attributes: ["name"],
         },
       ],
-    })
+    });
     // Serialize data so the template can read it
+    console.log(PostData);
     const posts = PostData.map((post) => post.get({ plain: true }));
-
+    console.log(posts);
     // Pass serialized data and session flag into template
     res.render("dashboard", {
       posts,
@@ -39,7 +41,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
  
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findOne(req.params.id, {
       where: {
@@ -72,6 +74,8 @@ router.get("/edit/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 router.get("/new", (req, res) => {
   res.render("new-post");

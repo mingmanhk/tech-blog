@@ -5,7 +5,6 @@ const withAuth = require("../utils/auth");
 //show all the post
 router.get("/", async (req, res) => {
   try {
-    // Get all dashboard and JOIN with user data
     const PostData = await Post.findAll({
       attributes: ["id", "title", "description", "created_at"],
       include: [
@@ -57,9 +56,7 @@ router.get("/post/:id", async (req, res) => {
         },
       ],
     });
-
     const post = postData.get({ plain: true });
-
     res.render("post", {
       post,
       logged_in: req.session.logged_in,
@@ -74,8 +71,7 @@ router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
-  }
-
+  };
   res.render("login");
 });
 
@@ -86,6 +82,11 @@ router.get("/signup", (req, res) => {
     return;
   }
   res.render("signup");
+});
+
+router.get("/create-post", (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  res.render("create-post");
 });
 
 module.exports = router;
