@@ -11,6 +11,9 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
+      order: [
+        ["created_at", "DESC"]
+      ],
       attributes: ["id", "title", "description", "created_at"],
       include: [
         {
@@ -75,10 +78,8 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   }
 });
 
-
-
-router.get("/new", (req, res) => {
-  res.render("new-post");
-});
+// router.get("/new", (req, res) => {
+//   res.render("new-post");
+// });
 
 module.exports = router;

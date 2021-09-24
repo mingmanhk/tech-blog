@@ -1,10 +1,12 @@
 const CreatePostFormHandler = async (event) => {
-  console.log("Create post");
   event.preventDefault();
+  console.log("Create post");
 
   const title = document.querySelector("#post-title").value.trim();
   const description = document.querySelector("#post-description").value.trim();
-
+  console.log(title);
+  console.log(description);
+  
   if (title && description) {
     const response = await fetch("/api/post", {
       method: "POST",
@@ -13,7 +15,7 @@ const CreatePostFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/dashboard");
     } else {
       alert(response.statusText);
     }
@@ -21,5 +23,5 @@ const CreatePostFormHandler = async (event) => {
 };
 
 document
-  .querySelector(".new-post-form")
-  .addEventListener("submit", CreatePostFormHandler);
+  .querySelector(".btn-create-post")
+  .addEventListener("click", CreatePostFormHandler);

@@ -1,9 +1,17 @@
-{{!-- <!-- show single post-->
-<div class="card">
-    <h2 class="post-title">{{post.title}}</h2>
-    <h3 class="post-subtitle">{{post.description}}</h3>
-</div>
-{{!-- {{> comments post.comments}} --}}
-{{!-- 
+
+       {{#if logged_in}}
+       <!-- edit , delete go here-->
+              <li class="nav-item"><a
+                  class="nav-link px-lg-3 py-3 py-lg-4"
+                  id="logout"
+                  href="/"
+                >Logout</a></li>
+            {{else}}
+              {{> post post}}
+{{> comments post.comments}}
+   <!--add leave comment function-->
+            {{/if}}
+
+
 <script src="/javascript/edit-post.js"></script>
-<script src="/javascript/delete-post.js"></script> --}} --}}
+<script src="/javascript/delete-post.js"></script>
