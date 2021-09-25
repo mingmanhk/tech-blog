@@ -47,14 +47,14 @@ Victor Lam
 This application provided following functionality:
 
     * View All post
-    * Create login account
+    * Sign up account, login , logout
     * Login to create/edit/delete post
     * Add comment with or without login
-    * Login out 
     
 Additional feature:
 
     * Anonymous user can post comment without user account
+    * Auto expire session in a day
 
 
 ## Contribute
