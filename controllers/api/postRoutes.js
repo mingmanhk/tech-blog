@@ -18,7 +18,6 @@ router.post("/", withAuth, async (req, res) => {
 
 //update post
 router.put("/:id", withAuth, async (req, res) => {
-  console.log("Update post");
   try {
     const postData = await Post.update(
       {
@@ -32,7 +31,6 @@ router.put("/:id", withAuth, async (req, res) => {
         },
       }
     );
-    console.log(postData);
     res.status(200).json(postData);
   } catch (err) {
     res.status(400).json(err);

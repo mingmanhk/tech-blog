@@ -4,7 +4,6 @@ const withAuth = require("../../utils/auth");
 
 //create new comment
 router.post("/", async (req, res) => {
-  console.log("create comment");
   try {
     const user_id = () => {
       if (req.session.user_id) {
@@ -18,7 +17,6 @@ router.post("/", async (req, res) => {
       user_id: req.session.user_id,
       post_id: req.body.post_id,
     });
-    console.log(commentData);
     res.status(200).json(commentData);
   } catch (err) {
     res.status(400).json(err);

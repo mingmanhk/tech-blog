@@ -4,9 +4,7 @@ const withAuth = require("../utils/auth");
 
 //show all the post
 router.get("/", withAuth, async (req, res) => {
-  console.log("Start Dashboard Route to get all post by users");
   try {
-    console.log("getting user post: ", req.session.user_id);
     const PostData = await Post.findAll({
       where: {
         user_id: req.session.user_id,
@@ -30,9 +28,7 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
     // Serialize data so the template can read it
-    console.log(PostData);
     const posts = PostData.map((post) => post.get({ plain: true }));
-    console.log(posts);
     // Pass serialized data and session flag into template
     res.render("dashboard", {
       posts,

@@ -3,7 +3,7 @@
     <div class="col-md-6">Posts
     <input id="post-id" type="hidden" name="post-id-body" class="form-input" value="{{post.id}}"/>
     </div>
-     {{#if logged_in }}
+     {{#if (is_Match logged_in self_checker) }}
       <!-- show edit , delete button when login-->
       <div class="col-md-6 " display="inline-block">
       <button class="btn btn-primary btn-post-edit" type="submit">Edit</button>
@@ -14,18 +14,18 @@
     </h3>
 </div>
 
- {{#if logged_in}}
+ {{#if (is_Match logged_in self_checker)}}
  <!-- edit , delete go here-->
  <div class="card">
   <form class="card-body">
     <form class="form new-comment-form">
       <div class="form-group row">
         <label class="form-label">Title</label>
-        <input id="post-title" name="post-title" class="form-input" value="{{post.title}}" readonly="readonly"/>
+        <input id="post-title" name="post-title" class="form-input form-control" value="{{post.title}}" readonly="readonly"/>
       </div>
       <div class="form-group row">
         <label class="form-label">Description</label>
-        <input id="post-description" name="post-description" class="form-input"  value="{{post.description}}" readonly="readonly"/>
+        <input id="post-description" name="post-description" class="form-input form-control"  value="{{post.description}}" readonly="readonly"/>
       </div>
       <p></p>
         <div class="form-group">
@@ -48,7 +48,7 @@
 <form class="form new-comment-form">
 <div class="form-group row">
 <label class="form-label">My Comment</label>
-<input id="comment" name="comment-body" class="form-input" />
+<input id="comment" name="comment-body" class="form-input form-control" />
 </div>
 <p></p>
 <div class="form-group">
