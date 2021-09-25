@@ -5,21 +5,22 @@ const withAuth = require("../../utils/auth");
 //create new post
 router.post("/", withAuth, async (req, res) => {
   try {
-     const postData = await Post.create({
-       title: req.body.title,
-       description: req.body.description,
-       user_id: req.session.user_id,
-     });
-     res.status(200).json(postData);
- } catch (err) {
-   res.status(400).json(err);
- }
+    const postData = await Post.create({
+      title: req.body.title,
+      description: req.body.description,
+      user_id: req.session.user_id,
+    });
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 //update post
-router.put("/:id", withAuth, async(req, res) => {
-   try {
-    const postData = Post.update(
+router.put("/:id", withAuth, async (req, res) => {
+  console.log("Update post");
+  try {
+    const postData = await Post.update(
       {
         title: req.body.title,
         description: req.body.description,
@@ -27,9 +28,11 @@ router.put("/:id", withAuth, async(req, res) => {
       {
         where: {
           id: req.params.id,
+          user_id: req.session.user_id,
         },
       }
     );
+    console.log(postData);
     res.status(200).json(postData);
   } catch (err) {
     res.status(400).json(err);
@@ -37,7 +40,7 @@ router.put("/:id", withAuth, async(req, res) => {
 });
 
 //delete post
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = Post.destroy({
       where: {
@@ -54,5 +57,5 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-  
+
 module.exports = router;

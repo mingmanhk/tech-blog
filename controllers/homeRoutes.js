@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const PostData = await Post.findAll({
       attributes: ["id", "title", "description", "created_at"],
+      order: [["created_at", "DESC"]],
       include: [
         {
           model: Comment,
@@ -15,6 +16,7 @@ router.get("/", async (req, res) => {
             model: User,
             attributes: ["name"],
           },
+          order: [["created_at", "DESC"]],
         },
         {
           model: User,
@@ -41,6 +43,7 @@ router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       attributes: ["id", "title", "description", "created_at"],
+      order: [["created_at", "DESC"]],
       include: [
         {
           model: Comment,
@@ -49,6 +52,7 @@ router.get("/post/:id", async (req, res) => {
             model: User,
             attributes: ["name"],
           },
+          order: [["created_at", "DESC"]],
         },
         {
           model: User,
@@ -72,7 +76,7 @@ router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
-  };
+  }
   res.render("login");
 });
 

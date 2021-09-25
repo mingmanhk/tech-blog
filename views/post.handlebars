@@ -1,45 +1,61 @@
-<div class="row text-center">
-     <div class="col-md-4">
+<div class="card"><h3 class="card-header">
+  <div class="row">
+    <div class="col-md-6">Posts
+    <input id="post-id" type="hidden" name="post-id-body" class="form-input" value="{{post.id}}"/>
+    </div>
      {{#if logged_in }}
-       <!-- show edit , delete button-->
-        <a href="edit-post"><button class="btn btn-primary btn-post-edit" type="submit">Edit</button></a>
-        <a href="delete"><button class="btn btn-primary btn-post-delete" type="submit">Delete</button></a>
-     {{/if}}
+      <!-- show edit , delete button when login-->
+      <div class="col-md-6 " display="inline-block">
+      <button class="btn btn-primary btn-post-edit" type="submit">Edit</button>
+      <a href="delete" class="delete-post-link"><button class="btn btn-primary btn-post-delete" type="submit" >Delete</button></a>
+      </div>
+    {{/if}}
+    </div>
+    </h3>
 </div>
 
-
-       {{#if logged_in}}
-       <!-- edit , delete go here-->
-          <div class="posts">
-            <div class="col-md-8"><h2>Posts ID: {{post.id}} </h2></div>
-            <input id="post-id" type="hidden" name="post-id-body" class="form-input"  value="{{post.id}}"/>
-            <a href="/post/{{id}}">
-              <h3 class="post-title">{{title}}</h3>
-              <h4 class="post-subtitle">{{description}}</h4>
-            </a>
-          </div>
-            {{else}}
-              {{> post post}}
-              {{> comments post.comments}}
-            {{/if}}
-  <div class="card">
-                <h3 class="card-header">Create Comment</h3>
-                <form class="card-body">
-                  <form class="form new-comment-form">
-                    <div class="form-group row">
-                      <label class="form-label">My Comment</label>
-                      <input id="comment" name="comment-body" class="form-input" />
-                    </div>
-                    <p></p>
-                    <div class="form-group">
-                      <button type="button" class="btn btn-primary btn-create-comment">Submit</button>
-                    </div>
-                  </form>
-                </form>
-              </div>
-              <p></p>          
-<script src="/js/create-comment.js"></script>
-<script src="/js/delete-post.js"></script>
-{{!-- 
-<script src="/js/edit-post.js"></script>
- --}}
+ {{#if logged_in}}
+ <!-- edit , delete go here-->
+ <div class="card">
+  <form class="card-body">
+    <form class="form new-comment-form">
+      <div class="form-group row">
+        <label class="form-label">Title</label>
+        <input id="post-title" name="post-title" class="form-input" value="{{post.title}}" readonly="readonly"/>
+      </div>
+      <div class="form-group row">
+        <label class="form-label">Description</label>
+        <input id="post-description" name="post-description" class="form-input"  value="{{post.description}}" readonly="readonly"/>
+      </div>
+      <p></p>
+        <div class="form-group">
+         <a href="update"class="update-post-link"><button class="btn btn-primary btn-post-update" type="submit" style="display: none;">Update</button></a>
+    <button class="btn btn-primary btn-post-cancel" type="submit" style="display: none;">Cancel</button>
+      </div>
+    </form>
+  </form>
+  </div>
+  <p></p>
+  <script src="/js/delete-post.js"></script>
+  <script src="/js/edit-post.js"></script>
+{{else}}
+  {{> post post}}
+{{/if}}
+{{> comments post.comments}}
+<div class="card">
+<h3 class="card-header">Create Comment</h3>
+<form class="card-body">
+<form class="form new-comment-form">
+<div class="form-group row">
+<label class="form-label">My Comment</label>
+<input id="comment" name="comment-body" class="form-input" />
+</div>
+<p></p>
+<div class="form-group">
+<button type="button" class="btn btn-primary btn-create-comment">Submit</button>
+</div>
+</form>
+</form>
+</div>
+<p></p>
+  <script src="/js/create-comment.js"></script>

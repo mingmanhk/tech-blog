@@ -11,9 +11,7 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
-      order: [
-        ["created_at", "DESC"]
-      ],
+      order: [["created_at", "DESC"]],
       attributes: ["id", "title", "description", "created_at"],
       include: [
         {
@@ -23,6 +21,7 @@ router.get("/", withAuth, async (req, res) => {
             model: User,
             attributes: ["name"],
           },
+          order: [["created_at", "DESC"]],
         },
         {
           model: User,
@@ -43,43 +42,5 @@ router.get("/", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
- 
-router.get("/edit/:id", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findOne(req.params.id, {
-      where: {
-        id: req.params.id,
-      },
-      attributes: ["id", "content", "title", "created_at"],
-      include: [
-        {
-          model: Comment,
-          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
-          include: {
-            model: User,
-            attributes: ["name"],
-          },
-        },
-        {
-          model: User,
-          attributes: ["name"],
-        },
-      ],
-    });
-
-    const posts = postData.get({ plain: true });
-
-    res.render("edit-post", {
-      ...posts,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// router.get("/new", (req, res) => {
-//   res.render("new-post");
-// });
 
 module.exports = router;
