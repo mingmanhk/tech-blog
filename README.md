@@ -22,9 +22,7 @@ Demo
 
 6. [Contribute](#contribute)
 
-7. [Test](#test)
-
-8. [Questions](#questions)
+7. [Questions](#questions)
 
 ## Installation
     1. Run npm install to install all dependencies
