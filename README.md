@@ -7,7 +7,7 @@ Repository:
     https://github.com/mingmanhk/tech-blog
      
 Demo
-<img src="./src/Demo.gif"/>
+    <img src="./src/demo.gif"/>
 
 ## Table of Contents
 1. [Installation](#installation)
