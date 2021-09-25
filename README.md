@@ -1,7 +1,7 @@
 [![license](https://img.shields.io/badge/license-MIT-blue)](https://shields.io)
 # tech-blog
 ## Description
-A simple tech blog using Model View Controller (MVC) paradigm. Built using MySQL2, Express, Sequelize, Bulma, Handlebars, Bootstrap and dotenv.
+A simple tech blog using Model View Controller (MVC) paradigm. Built using MySQL2, Express, Sequelize, bcrypt, Session, Handlebars, Bootstrap and dotenv.
 
 Repository: 
     https://github.com/mingmanhk/tech-blog
