@@ -5,8 +5,6 @@ A simple tech blog using Model View Controller (MVC) paradigm. Built using MySQL
 
 Repository: 
     https://github.com/mingmanhk/tech-blog
-
-Deployment:
      
 Demo
 <img src="./src/Demo.gif"/>
