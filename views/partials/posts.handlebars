@@ -1,12 +1,22 @@
 <!-- Loop over each object in the projects array -->
 <div class="posts">
-  {{#each this}}
-    <div class="post-preview">
-<a href="/post/{{id}}">
-  <h3 class="post-title">{{title}}</h3>
-  <h4 class="post-subtitle">{{description}}</h4>
-</a>
-<p class="post-meta">Posted by {{user.name}} on {{format_date created_at}}</p>
-</div>
-  {{/each}}
+  {{#if (is_Empty this)}}
+    <p></p>
+    <div class="text">
+      No post yet, do you want to create first post!
+    </div>
+  {{else}}
+    {{#each this}}
+      <div class="post-preview">
+        <a href="/post/{{id}}">
+          <h3 class="post-title">{{title}}</h3>
+          <h4 class="post-subtitle">{{description}}</h4>
+        </a>
+        <p class="post-meta">Posted by
+          {{user.name}}
+          on
+          {{format_date created_at}}</p>
+      </div>
+    {{/each}}
+  {{/if}}
 </div>

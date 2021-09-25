@@ -1,15 +1,10 @@
 const DeletePostFormHandler = async (event) => {
-  event.preventDefault();
-  console.log("Delete post");
-    const post_id = document.querySelector("#post-id").value.trim();
-    
+  const post_id = document.querySelector("#post-id").value.trim();
   if (post_id) {
-    const response = await fetch("/api/post", {
+    const response = await fetch(`/api/post/${post_id}`, {
       method: "DELETE",
-      body: JSON.stringify({ post_id }),
-      headers: { "Content-Type": "application/json" },
     });
-
+    console.log(response);
     if (response.ok) {
       document.location.replace("/dashboard");
     } else {
