@@ -19,6 +19,15 @@ const CreatePostFormHandler = async (event) => {
   }
 };
 
+//turn off edit mode
+const CancelPostFormHandler = async (event) => {
+  document.location.replace("/dashboard");
+};
+
 document
   .querySelector(".btn-create-post")
   .addEventListener("click", CreatePostFormHandler);
+
+document
+  .querySelector(".btn-cancel-post")
+  .addEventListener("click", CancelPostFormHandler);
